@@ -1,5 +1,6 @@
 package com.techproed.day04;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
@@ -35,7 +36,7 @@ Oldugunu test edin.
 
         //3-send a request
         Response response = given().
-                accept("application/json").
+                accept(ContentType.JSON). //accept("application/json") can also be used
                 when().
                 get(url);
         response.prettyPrint(); // to print in consol
