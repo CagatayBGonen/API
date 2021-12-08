@@ -2,42 +2,37 @@ package com.techproed.day05;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
-import static org.hamcrest.Matchers.*;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
-public class GetRequest03 {
+public class GetRequest04 {
     /*
-    https://restful-booker.herokuapp.com/booking/7 url'ine
+    https://restful-booker.herokuapp.com/booking/5 url'ine
 accept type'i "application/json" olan GET request'i yolladigimda
 gelen response'un
 status kodunun 200
 ve content type'inin "application/json"
-ve firstname'in "Jim"
-ve lastname'in "Jones"
-ve checkin date'in 2018-10-07"
-ve checkout date'in 2020-09-30 oldugunu test edin
+ve firstname'in “Jim"
+ve totalprice’in 600
+ve checkin date'in 2015-06-12"oldugunu test edin0
      */
     @Test
     public void test() {
-        String url = "https://restful-booker.herokuapp.com/booking/7";
+        String url = "https://restful-booker.herokuapp.com/booking/5";
         Response response = given().
                 accept("application/json").
                 when().
                 get(url);
         response.prettyPrint();
-
         response.then().
                 assertThat().
                 statusCode(200).
                 contentType("application/json").
-                body("firstname", equalTo("Mary"),
-                        "lastname", equalTo("Wilson"),
-                        "totalprice", equalTo(976),
-                        "bookingdates.checkin", equalTo("2015-05-28"),
-                        "bookingdates.checkout", equalTo("2020-01-24"));
-
+                body("firstname", equalTo("Mark"),
+                        "totalprice", equalTo(854),
+                        "bookingdates.checkin", equalTo("2019-05-26"));
     }
 }
